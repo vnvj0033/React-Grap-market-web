@@ -16,10 +16,10 @@ function App() {
       <h2>{text}</h2>
       {sayHello()}
       <div onClick={sayHello2}>클릭해 주세요</div>
-      <ChildComponet />
-      <ChildComponet />
-      <ChildComponet />
-      <ChildComponet />
+      <ChildComponet name="나나" age={27} />
+      <ChildComponet name="아이유" age={29} />
+      <ChildComponet name="소연" age={28} />
+      <ChildComponet name="예지" age={29} />
     </div>
   );
 }
