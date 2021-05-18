@@ -2,7 +2,10 @@ import "./index.css";
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
+dayjs.extend(relativeTime);
 function MainPage() {
   const [products, setProducts] = React.useState([]);
   React.useEffect(function () {
@@ -33,12 +36,15 @@ function MainPage() {
                 <div className="product-contents">
                   <span className="product-name">{product.name}</span>
                   <span className="product-price">{product.price}원</span>
-                  <div className="product-seller">
-                    <img
-                      className="product-avatar"
-                      src="images/icons/avatar.png"
-                    />
-                    <span>{product.seller}</span>
+                  <div className="product-footer">
+                    <div className="product-seller">
+                      <img
+                        className="product-avatar"
+                        src="images/icons/avatar.png"
+                      />
+                      <span>{product.seller}</span>
+                    </div>
+                    <span>{dayjs(product.createdAt).fromNow()}</span>
                   </div>
                 </div>
               </Link>
