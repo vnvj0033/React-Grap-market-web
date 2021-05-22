@@ -1,11 +1,22 @@
-import { Button, Divider, Form, Input, InputNumber, Upload } from "antd";
+import {
+  Button,
+  Divider,
+  Form,
+  Input,
+  InputNumber,
+  Upload,
+  message,
+} from "antd";
 import { useState } from "react";
 import "./index.css";
 import { API_URL } from "../config/constants.js";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function UploadPage() {
   const [imageUrl, setImageUrl] = useState(null);
+  const history = useHistory();
+
   const onSubmit = (values) => {
     axios
       .post(`${API_URL}/products`, {
@@ -17,6 +28,10 @@ function UploadPage() {
       })
       .then((result) => {
         console.log(result);
+        history.replace("/");
+      })
+      .catch((error) => {
+        message.error(`에러가 발생했습니다. ${error.message}`);
       });
   };
   const onChangeImage = (info) => {
